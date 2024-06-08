@@ -1,0 +1,89 @@
+{% extends 'webjew/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  .catalog-bar {
+    padding-top: 40px;
+  }
+  .catalog-bar h2 {
+    font-size: 25px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 50px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    margin-top: 33px;
+    background-color: #1D1D1DBF;
+    border-radius: 30px;
+  }
+  .product-item {
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    padding: 30px;
+    padding-bottom: 0px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+  }
+  .product-item img {
+    max-width: 100%;
+    height: auto;
+    transition: 0.1s;
+  }
+  .product-item img:hover, .product-item a {
+    transform:scale(1.1);
+    border-radius: 5px;
+    transition: 0.25  s;
+  }
+  .product-item a {
+    color: black;
+  }
+  .product-item p {
+    color: black;
+    margin: 0px;
+    margin-top: 15px;
+    margin-bottom: 16.5px;
+  }
+  .product-item a:hover {
+    text-decoration: underline;
+    color: black;
+  }
+</style>
+
+<div class="container text-center">
+
+  <div class="row catalog-bar">
+    <div class="col-3">
+      
+    </div>
+    <div class="col-6">
+      <h2>У нас широкий асортимент виробів</h2>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-dark" onclick="openPopup()">Замовити виріб</button>
+    </div>
+  </div>
+
+  <div class="products-grid">
+    {% for c in cats %}
+    <div class="product-item">
+      <a href="{% url 'catalog' %}{{c.1}}/">
+        <img src="{{c.2}}" alt="{{c.1}}">
+        <p>{{c.0}}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+	
+	<p>*Представляємо власні готові варіанти виконаних виробів</p>
+	<p>*Для перегляду більшої кількості інших ідей здійсніть пошук у мережі Інтернет.</p>
+</div>
+
+
+{% endblock %}

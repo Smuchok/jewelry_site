@@ -1,0 +1,205 @@
+{% extends 'webjew/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  .catalog-section {
+      padding: 50px 0;
+      text-align: center;
+  }
+  .catalog-bar h2 {
+      margin-bottom: 30px;
+      font-size: 30px;
+  }
+  .catalog-section img {
+      border-radius: 10px;
+      max-width: 100%;
+      height: 270px;
+      /* width: 240px; */
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.315);
+      transition: 0.05s;
+  }
+  .catalog-section img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+
+  .no-jews p {
+    font-size: 20px;
+    color: white;
+    margin: 50px;
+    padding: 20px;
+    background-color: #1D1D1DBF;
+    border-radius: 15px;
+  }
+
+  .product-grid {
+      /* display: grid; */
+      /* grid-template-columns: repeat(4, 1fr); */
+      gap: 20px;
+      /* padding: 20px; */
+  }
+  .product-item {
+      background-color: #fff;
+      padding: 10px;
+      /* border: 1px solid #ddd; */
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  .btn-order {
+      margin-top: 0px;
+      border-radius: 20px;
+  }
+</style>
+
+<div class="container catalog-section">
+
+  <div class="row catalog-bar">
+    <div class="col-4">
+      <a href="{% url 'catalog' %}" class="btn btn-link">До каталогу</a>
+    </div>
+    <div class="col-4">
+      <!-- <h2>Варіанти обручок</h2> -->
+      <h2>{{title}}</h2>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-dark btn-order" onclick="openPopup()">Замовити виріб</button>
+    </div>
+  </div>
+  
+  <div class="row">
+  <!-- <div class="product-grid"> -->
+    {% if jews %}
+      {% for j in jews %}
+      <div class="col-3 product-item">
+          <img src="/{{j.title_image}}" alt="{{j.title}}" id="jew-{{j.id}}" onmouseover="openModalImg('jew-{{j.id}}')">
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="col-12 no-jews">
+        <p>
+          <span>Нічого</span><span style="color: rgba(255, 255, 255, 0.644);">, але ти можеш це виправити</span>
+        </p>
+      </div>
+    {% endif %}
+  <!-- </div> -->
+  </div>
+
+</div>
+
+
+
+<!-- модальне фото -->
+<style>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover, .close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+
+<div id="modal_photo" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modal-img">
+  <div id="caption"></div>
+</div>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("modal_photo");
+  
+  function openModalImg(id) {
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById(id);
+    var modalImg = document.getElementById("modal-img");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+  }
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() { 
+    modal.style.display = "none";
+  }
+</script>
+  
+{% endblock %}

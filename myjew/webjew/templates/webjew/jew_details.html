@@ -1,0 +1,166 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <p>{{jew.price}} ₴</p>
+    <p>{{jew.description}}</p>
+    <p>{{jew.title_image}}</p>
+
+    <hr>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar-nav li {
+            margin-right: 20px;
+        }
+        .process-section {
+            padding: 50px 0;
+            text-align: center;
+        }
+        .process-section h2 {
+            margin-bottom: 30px;
+        }
+        .step {
+            margin-bottom: 40px;
+        }
+        .step img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .step p {
+            margin-top: 10px;
+        }
+        .video-section {
+            margin-top: 50px;
+        }
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .btn-catalog {
+            margin-top: 20px;
+        }
+        .footer-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px 0;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        .contact-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .contact-form input {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+        }
+    </style>
+
+    <div class="container process-section">
+        <h2>Процес виготовлення ювелірного виробу: "Ворон"</h2>
+        
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step1.jpg' %}" alt="Крок 1">
+            </div>
+            <div class="col-md-6">
+                <p>1. Обговорення ідеї та дизайну виробу з клієнтом, визначення розмірів.</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step2.jpg' %}" alt="Крок 2">
+            </div>
+            <div class="col-md-6">
+                <p>2. Створення ескізу та 3-D моделі.</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step3.jpg' %}" alt="Крок 3">
+            </div>
+            <div class="col-md-6">
+                <p>3. Виготовлення воскової моделі (вручну або за допомогою МЛТУ-станка).</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step4.jpg' %}" alt="Крок 4">
+            </div>
+            <div class="col-md-6">
+                <p>4. Лиття виробу з обраного клієнтом металу.</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step5.jpg' %}" alt="Крок 5">
+            </div>
+            <div class="col-md-6">
+                <p>5. Обробка виробу, шліфування, попереднє полірування.</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step6.jpg' %}" alt="Крок 6">
+            </div>
+            <div class="col-md-6">
+                <p>6. Полірування або матування.</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step7.jpg' %}" alt="Крок 7">
+            </div>
+            <div class="col-md-6">
+                <p>7. Кріплення дорогоцінного каміння та (або) виконання гравіювання.</p>
+            </div>
+        </div>
+        <div class="row step">
+            <div class="col-md-6">
+                <img src="{% static 'webjew/img/steps/step8.jpg' %}" alt="Крок 8">
+            </div>
+            <div class="col-md-6">
+                <p>8. Чорніння або нанесення покриття: родій, рутеній, емаль тощо.</p>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <h3>Відео процесу виготовлення виробу: "Ніж"</h3>
+            <div class="video-placeholder">
+                <p>Відео ютуб</p>
+            </div>
+            <a href="#" class="btn btn-dark btn-catalog">Каталог</a>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
