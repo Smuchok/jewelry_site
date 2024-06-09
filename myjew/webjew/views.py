@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse
 from .models import *
-from .forms import OrderForm
+from .forms import *
 
 from .serializer import *
 from rest_framework.response import Response
@@ -20,14 +20,41 @@ cats = {
     }
 cats_list = (WeddingRing, CircletRing, SealRing, Chainlet, Pendant, Necklace, Earrings, Kaf, Bracelet)
 
+# context = {
+#     'feedback_form': FeedbackForm(),
+# }
+
+def check_feedback_form(request, context={}, feedback_form=FeedbackForm()):
+    print('feedback')
+    if request.method == 'POST':
+        print('POST CATALOG')
+        feedback_form = FeedbackForm(request.POST)
+        if feedback_form.is_valid():
+            # form.instance.applicant = request.user
+            print('IS VALID')
+            feedback_form.save()
+            context['form_success_feedback'] = True
+            # messages.success(request, 'Education Added Successfully')
+            # return redirect('')
+        else:
+            print('IS NOT VALID')
+            # feedback_form.save()
+    else:
+        print('NOT POST')
+
+    context['feedback_form'] = FeedbackForm()
+
+    return request, context
 
 def index(request):
 
     context = {
         'title': "Головна",
         'active': 1,
+        'feedback_form': FeedbackForm(),
     }
     
+    request, context = check_feedback_form(request, context)
     # return HttpResponse(text)
     return render(request, 'webjew/index.html', context=context)
 
@@ -65,6 +92,7 @@ def catalog(request):
         'active': 2,
         'order_form': order_form,
         'form_success': False,
+        'feedback_form': FeedbackForm(),
     }
     
     if request.method == 'POST':
@@ -85,7 +113,7 @@ def catalog(request):
 
     context['order_form'] = OrderForm()
 
-
+    request, context = check_feedback_form(request, context)
     # return HttpResponse(text)
     return render(request, 'webjew/catalog.html', context=context)
 
@@ -126,6 +154,7 @@ def jews_by_catalog(request, category):
         'category': category,
         'order_form': order_form,
         'form_success': False,
+        'feedback_form': FeedbackForm(),
     }
 
     if request.method == 'POST':
@@ -146,6 +175,7 @@ def jews_by_catalog(request, category):
 
     context['order_form'] = OrderForm()
 
+    request, context = check_feedback_form(request, context)
     return render(request, 'webjew/jews_by_cat.html', context=context)
 
 # @api_view(['GET'])
@@ -174,6 +204,7 @@ def jew_details(request, category, jew_id):
         'title': jew.title,
         'jew': jew,
         'category': category,
+        'feedback_form': FeedbackForm(),
     }
 
     return render(request, 'webjew/jew_details.html', context=context)
@@ -183,6 +214,7 @@ def about(request):
         'title': 'Наша команда',
         'photo': 'Вернісаж.jpg',
         'description': "Ласкаво просимо до нашого світу вишуканих ювелірних виробів, де кожна прикраса — це унікальний шедевр, створений з любов'ю та майстерністю. Наша мета — надавати вам не тільки витончені прикраси, але і незабутні емоції. Ми пишаємося нашим професійним підходом до виготовлення кожного виробу, використовуючи найвищу якість матеріалів і дбайливо обираючи кожен елемент. Дозвольте нам допомогти вам обрати чудовий аксесуар, який стане не тільки частиною вашого стилю, але й часом пам'яті. Ласкаво просимо в наше ювелірне мистецтво, де краса завжди в деталях.",
+        'feedback_form': FeedbackForm(),
     }
     # обовязково квадратні фото 1:1 до 250px!
     team = [
@@ -217,16 +249,19 @@ def about(request):
         'active': 3,
         'team': team,
         'team_about': team_about,
+        'feedback_form': FeedbackForm(),
     }
-
+    request, context = check_feedback_form(request, context)
     return render(request, 'webjew/about.html', context=context)
+
 
 def contact(request):
     context = {
         'title': "Контаки",
         'active': 4,
+        'feedback_form': FeedbackForm(),
     }
-
+    request, context = check_feedback_form(request, context)
     return render(request, 'webjew/contact.html', context=context)
 
 def steps(request):
@@ -244,12 +279,21 @@ def steps(request):
         'title': "Кроки",
         # 'active': 4,
         'steps': steps_list,
+        'feedback_form': FeedbackForm(),
     }
-
+    request, context = check_feedback_form(request, context)
     return render(request, 'webjew/steps.html', context=context)
 
 def jew3d(request):
-    return render(request, 'webjew/jew3d.html')
+    context = {
+        'feedback_form': FeedbackForm(),
+    }
+    request, context = check_feedback_form(request)
+    return render(request, 'webjew/jew3d.html', context=context)
 
 def test(request):
-    return render(request, 'webjew/test.html')
+    context = {
+        'feedback_form': FeedbackForm(),
+    }
+    request, context = check_feedback_form(request)
+    return render(request, 'webjew/test.html', context=context)

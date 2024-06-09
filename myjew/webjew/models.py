@@ -131,6 +131,19 @@ class Order(models.Model):
         return f"{self.name} - {self.wished_jew} - {self.phone_number}"
 
 
+class Feedback(models.Model):
+    page_url = models.CharField(max_length=200, null=True, blank=True)
+    text = models.CharField(max_length=300, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Фідбек'
+        verbose_name_plural = 'Фідбеки'
+
+    def __str__(self):
+        return f"{self.created} - {self.page_url}: {self.text}"
+
+
 # class Question(models.Model):
 #     question_text = models.CharField(max_length=200)
 #     pub_date = models.DateTimeField("date published")
