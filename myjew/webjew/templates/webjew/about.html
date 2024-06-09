@@ -4,50 +4,70 @@
 {% block content %}
 
 <style>
-  .process-section {
-      padding: 50px 0;
+  .about-section {
+      padding: 50px;
       text-align: center;
   }
-  .process-section h2 {
-      margin-bottom: 30px;
+  .about-section h2 {
+    margin-bottom: 20px;
   }
-  .step {
-      margin-bottom: 40px;
-  }
-  .step img {
+  .about-section img {
+      border-radius: 15px;
       max-width: 100%;
       height: auto;
-      border-radius: 10px;
   }
-  .step p {
-      margin-top: 10px;
-  }
-  .step-text {
-    text-align: left;
-  }
-  .step-num {
-    text-align: center;
+  .about-text {
+      margin-top: 30px;
   }
 
-  .video-section {
-      margin-top: 50px;
+  .team {
+    justify-content: center;
   }
-  .video-placeholder {
-      width: 100%;
-      height: 400px;
-      background-color: #ccc;
+  .team-member {
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #ddd;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
+      flex-direction: column;
+      padding: 20px 0;
   }
-  .btn-catalog {
-      margin-top: 20px;
+  .team-member img {
+      border-radius: 10px;
+      /* height: 350px; */
+      max-width: 250px;
+      /* max-width: 70%; */
+      /* max-height: 70%; */
+      /* margin-left: 20px; */
+  }
+  .team-member p {
+    margin: 0;
+    margin-top: 10px;
   }
 </style>
 
+<div class="container about-section">
+  <h2>Наша команда</h2>
+  <div class="row about">
+    <div class="col-md-4 col-sm-12">
+      <img src="{% static 'webjew/img/team' %}/{{team_about.photo}}" alt="Наша команда ({{team_about.photo}})">
+    </div>
+    <div class="col-md-8 col-sm-12 about-text">
+      <p>{{team_about.description}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container team-section">
+  <div class="row team">
+    {% for t in team %}
+    <div class="col-md-6 col-sm-12 team-member">
+      <h4>{{t.name}}</h4>
+      <img src="{% static 'webjew/img/team' %}/{{t.photo}}" alt="{{t.photo}}">
+      <p>{{t.text}}</p>
+    </div>
+    {% endfor %}
+  </div>
+  
+</div>
 
 
 
