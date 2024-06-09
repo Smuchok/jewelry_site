@@ -39,6 +39,7 @@
 
   .video-section {
       margin-top: 50px;
+      justify-content: center;
   }
   .video-placeholder {
       width: 100%;
@@ -75,14 +76,27 @@
 
   </div>
 
-  <div class="video-section">
+  <div class="row video-section">
+    <!-- <div class="row"> -->
       <h3>Відео процесу виготовлення виробу: "Ніж"</h3>
       <!-- <div class="video-placeholder"> -->
         <!-- <video width="680" height="400" controls src="{% static 'media' %}"></video> -->
       <iframe src="https://drive.google.com/file/d/1baQjyQFOKOVNRvvZMQJ1knn28Zt00snm/preview" 
-        width="680" height="400" allow="autoplay"></iframe>
+        width="680" height="400" allow="autoplay"
+        id="videoFrame"></iframe>
       <!-- </div> -->
+    <!-- </div> -->
   </div>
+
+  <script>
+    // якщо ширина вікна менша, то зменшити розмір відео
+    // alert(window.screen.width)
+    if (window.screen.width<=600) {
+      var video = document.getElementById('videoFrame');
+      video.setAttribute('width', '340')
+      video.setAttribute('height', '200')
+    };
+  </script>
 
   <a href="{% url 'catalog' %}" class="btn btn-dark btn-catalog">Каталог</a>
 

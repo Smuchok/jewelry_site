@@ -6,11 +6,16 @@
 <style>
   .catalog-section {
       padding: 50px 0;
+      padding-top: 20px;
       text-align: center;
   }
+  .catalog-bar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .catalog-bar h2 {
-      margin-bottom: 30px;
-      font-size: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
   }
   .catalog-section img {
       border-radius: 10px;
@@ -39,11 +44,12 @@
   .product-grid {
       /* display: grid; */
       /* grid-template-columns: repeat(4, 1fr); */
-      gap: 20px;
+      /* gap: 20px; */
       /* padding: 20px; */
+      margin-top: 0px;
   }
   .product-item {
-      background-color: #fff;
+      /* background-color: #fff; */
       padding: 10px;
       /* border: 1px solid #ddd; */
       /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
@@ -57,23 +63,23 @@
 <div class="container catalog-section">
 
   <div class="row catalog-bar">
-    <div class="col-4">
+    <div class="col-md-4 col-sm-12">
       <a href="{% url 'catalog' %}" class="btn btn-link">До каталогу</a>
     </div>
-    <div class="col-4">
+    <div class="col-md-4 col-sm-12">
       <!-- <h2>Варіанти обручок</h2> -->
       <h2>{{title}}</h2>
     </div>
-    <div class="col-4">
+    <div class="col-md-4 col-sm-12">
       <button class="btn btn-dark btn-order" onclick="openPopup()">Замовити виріб</button>
     </div>
   </div>
   
-  <div class="row">
+  <div class="row product-grid">
   <!-- <div class="product-grid"> -->
     {% if jews %}
       {% for j in jews %}
-      <div class="col-3 product-item">
+      <div class="col-lg-3 col-md-4 col-sm-6 product-item">
           <img src="/{{j.title_image}}" alt="{{j.title}}" id="jew-{{j.id}}" onmouseover="openModalImg('jew-{{j.id}}')">
       </div>
       {% endfor %}

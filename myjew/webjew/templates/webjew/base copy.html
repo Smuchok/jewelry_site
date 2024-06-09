@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+	<!-- <link rel="stylesheet" href="{% static 'webjew/bootstrap4/css/bootstrap-grid.css' %}"> -->
+	<!-- <link rel="stylesheet" href="{% static 'webjew/bootstrap4/css/bootstrap.css' %}"> -->
+	<!-- <link rel="stylesheet" href="{% static 'webjew/css/catalog.css' %}"> -->
+
+	<style>
+		* {font-family: 'Montserrat';}
+	</style>
+</head>
+<body>
+	<style>
+		nav {
+			padding-left: 25px;
+			padding-right: 25px;
+			margin-bottom: 20px;
+		}
+		/* Aurea Incus */
+		.navbar-brand {
+			position: relative;
+			width: 245px;
+			/* height: 49px; */
+
+			font-family: 'Montserrat';
+			font-style: normal;
+			font-weight: 600;
+			font-size: 40px;
+			/* line-height: 49px; */
+			/* identical to box height */
+
+			padding-left: 30px;
+			color: #000000;
+		}
+		.nav-item {
+			margin-bottom: 25px;
+			position: relative;
+			width: 146px;
+			height: 37px;
+
+			font-family: 'Montserrat';
+			font-style: normal;
+			font-weight: 500;
+			font-size: 30px;
+			/* line-height: 37px; */
+			/* identical to box height */
+
+			/* color: #000000;	 */
+		}
+		.nav-link {
+			color: #000000;
+		}
+		.active {
+			text-decoration: underline;
+			color: #000000;
+		}
+
+
+	</style>
+
+	<nav class="navbar navbar-expand-lg bg-light">
+		<a class="navbar-brand" href="#">Aurea Incus</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+		  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+			<li class="nav-item {% if active is 1 %}active{% endif %}">
+			  <a class="nav-link" href="{% url 'index' %}">Головна <span class="sr-only">(current)</span></a>
+			</li>
+
+			<li class="nav-item {% if active is 2 %}active{% endif %}">
+			  <a class="nav-link" href="{% url 'catalog' %}">Каталог</a>
+			</li>
+			
+			<li class="nav-item {% if active is 3 %}active{% endif %}">
+			  <a class="nav-link" href="{% url 'about' %}">Про нас</a>
+			</li>
+
+			<li class="nav-item {% if active is 4 %}active{% endif %}">
+				<a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+			</li>
+
+		  </ul>
+		</div>
+	  </nav>
+
+	  <!-- <style>
+		.navbar-nav li {
+            margin-right: 20px;
+        }
+	  </style>
+
+	  <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <a class="navbar-brand" href="#">Aurea Incus</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Головна</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Каталог</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Про нас</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Контакти</a></li>
+        </ul>
+    </nav> -->
+
+	{% block content %}
+	{% endblock %}
+</body>
+</html>
