@@ -1,3 +1,5 @@
+на маці не спрацює певно)
+
 ## 1. enter env
 ```bash
 venv/Scipts/activate
