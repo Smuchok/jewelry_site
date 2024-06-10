@@ -12,8 +12,9 @@
 	<style>
 		body {
 			font-family: Arial, sans-serif;
-      background: #F3F4F6E5;
-			margin-left: 6px;
+      /* background: #F3F4F6E5; */
+      background: white;
+      margin-left: 6px;
 			margin-right: 6px;
 			margin-top: 66px;
 			padding: 0;
@@ -291,13 +292,13 @@
 
 <!-- футер -->
 <div class="footer">
-	<div class="row">
+	<div class="row footer-top">
 		<div class="col-md-6 col-sm-12">
 			<div class="footer-social-icons">
 				<a href="https://www.instagram.com/aurea_incus"><img src="{% static 'webjew/img/rest/instagram.png' %}" alt="Instagram"></a>
-				<a href="https://www.facebook.com/"><img src="{% static 'webjew/img/rest/facebook.png' %}" alt="Facebook"></a>
-				<a href="https://www.telegram.com/"><img src="{% static 'webjew/img/rest/telegram.png' %}" alt="Telegram"></a>
-				<a href="https://www.viber.com/"><img src="{% static 'webjew/img/rest/viber.png' %}" alt="Viber"></a>
+				<a href="https://www.facebook.com/aurea.incus"><img src="{% static 'webjew/img/rest/facebook.png' %}" alt="Facebook"></a>
+				<a href="https://t.me/Diana159"><img src="{% static 'webjew/img/rest/telegram.png' %}" alt="Telegram"></a>
+				<a href="viber://chat?number=%2B380677542287"><img src="{% static 'webjew/img/rest/viber.png' %}" alt="Viber"></a>
 			</div>
 		</div>
 	
@@ -324,12 +325,12 @@
 	
 	<hr>
 
-	<div class="row">
+	<div class="row footer-bottom">
 		<div class="col-md-6 col-sm-12 copyright">
 			<p>&copy; 2024 Aurea Incus. Всі права захищені.</p>
 		</div>
 		<div class="col-md-6 col-sm-12 policy">
-			<a href="#">Політика конфіденційності</a>
+			<a href="{% url 'policy' %}">Політика конфіденційності</a>
 		</div>
 	</div>
 	
@@ -341,6 +342,10 @@
 		justify-content: center;
 		gap: 10px;
 		padding: 20px 0;
+  }
+  .footer-social-icons img {
+    width: auto;
+    height: 45px;
   }
   .footer {
 		background-color: #f1f1f1;
@@ -360,6 +365,15 @@
     margin-bottom: 10px;
     border-width: 1.8px;
     border-radius: 10px;
+  }
+  .footer-social-icons, .contact-form {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding: 0;
+  }
+  .footer-bottom {
+    font-size: 15px;
   }
   .footer .policy a {
 	color: #000;

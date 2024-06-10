@@ -81,7 +81,8 @@
       {% for j in jews %}
       <div class="col-lg-3 col-md-4 col-sm-6 product-item">
           <img src="/{{j.title_image}}" alt="{{j.title}}" id="jew-{{j.id}}" onmouseover="openModalImg('jew-{{j.id}}')">
-      </div>
+          <!-- <p>{{j.title_image}}</p> -->
+        </div>
       {% endfor %}
     {% else %}
       <div class="col-12 no-jews">

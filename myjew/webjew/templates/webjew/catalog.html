@@ -58,6 +58,14 @@
     text-decoration: underline;
     color: black;
   }
+
+  .summary {
+    color: rgba(0, 0, 0, 0.736);
+    margin: 40px;
+  }
+  .summary p {
+    margin: 0;
+  }
 </style>
 
 <div class="container text-center">
@@ -76,7 +84,8 @@
 
   <div class="row products-grid">
     {% for c in cats %}
-    <div class="col-md-4 col-sm-6 col-6 product-item ">
+    <!-- <div class="col-md-4 col-sm-6 col-6 product-item "> -->
+      <div class="col-md-4 col-sm-6 col-12 product-item ">
       <a href="{% url 'catalog' %}{{c.1}}/">
         <img src="{{c.2}}" alt="{{c.1}}">
         <p>{{c.0}}</p>
@@ -85,8 +94,11 @@
     {% endfor %}
   </div>
 	
-	<p>*Представляємо власні готові варіанти виконаних виробів</p>
-	<p>*Для перегляду більшої кількості інших ідей здійсніть пошук у мережі Інтернет.</p>
+  <div class="summary">
+    <p>*Представляємо власні готові варіанти виконаних виробів</p>
+    <p>*Для перегляду більшої кількості інших ідей здійсніть пошук у мережі Інтернет.</p>  
+  </div>
+
 </div>
 
 

@@ -148,6 +148,9 @@ def jews_by_catalog(request, category):
     jews = cat.objects.all()
     order_form = OrderForm()
 
+    for j in jews:
+        j.title_image = str(j.title_image).replace('webjew/', '')
+
     context = {
         'title': cat._meta.verbose_name_plural,
         'jews': jews,
@@ -290,6 +293,13 @@ def jew3d(request):
     }
     request, context = check_feedback_form(request)
     return render(request, 'webjew/jew3d.html', context=context)
+
+def policy(request):
+    context = {
+        'feedback_form': FeedbackForm(),
+    }
+    request, context = check_feedback_form(request)
+    return render(request, 'webjew/policy.html', context=context)
 
 def test(request):
     context = {

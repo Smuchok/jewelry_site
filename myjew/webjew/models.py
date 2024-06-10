@@ -59,6 +59,7 @@ class Chainlet(Base):
     class Meta:
         verbose_name = 'Ланцюжок'
         verbose_name_plural = 'Ланцюжки'
+        ordering = ["-id"]
 
     def category_image():
         return root_img('chainlet')
@@ -99,6 +100,7 @@ class Kaf(Base):
     class Meta:
         verbose_name = 'Каф'
         verbose_name_plural = 'Кафи'
+        ordering = ["-id"]
 
     def category_image():
         return root_img('kaf')
