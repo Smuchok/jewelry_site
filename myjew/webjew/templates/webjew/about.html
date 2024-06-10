@@ -5,8 +5,9 @@
 
 <style>
   .about-section {
-      padding: 50px;
-      text-align: center;
+    padding: 50px;
+    text-align: center;
+    margin-bottom: 20px;
   }
   .about-section h2 {
     margin-bottom: 20px;
@@ -16,17 +17,37 @@
       max-width: 100%;
       height: auto;
   }
+  .about {
+    align-items: center;
+  }
   .about-text {
       margin-top: 30px;
+      /* max-width: 60%; */
+  }
+  .about-text hr {
+    max-width: 40%;
+    height: 0.5px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* opacity: 0.6; */
+    /* margin-top: 20px; */
   }
 
   .team {
     justify-content: center;
+    margin-bottom: 30px;
+  }
+  .team-member h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
   .team-member {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       flex-direction: column;
       padding: 20px 0;
   }
@@ -34,13 +55,17 @@
       border-radius: 10px;
       /* height: 350px; */
       max-width: 250px;
+      /* margin-bottom: 10px; */
+      margin-top: 5px;
       /* max-width: 70%; */
       /* max-height: 70%; */
       /* margin-left: 20px; */
   }
   .team-member p {
     margin: 0;
-    margin-top: 10px;
+    margin-top: 5px;
+    max-width: 60%;
+    text-align: center;
   }
 </style>
 
@@ -52,6 +77,7 @@
     </div>
     <div class="col-md-8 col-sm-12 about-text">
       <p>{{team_about.description}}</p>
+      <hr>
     </div>
   </div>
 </div>
@@ -59,10 +85,13 @@
 <div class="container team-section">
   <div class="row team">
     {% for t in team %}
-    <div class="col-md-6 col-sm-12 team-member">
-      <h4>{{t.name}}</h4>
+    <!-- <div class="col-md-6 col-sm-12 team-member"> -->
+    <div class="col-xg-3 col-lg-6 col-md-6 col-sm-12 team-member">
       <img src="{% static 'webjew/img/team' %}/{{t.photo}}" alt="{{t.photo}}">
-      <p>{{t.text}}</p>
+      <h4>{{t.name}}</h4>
+      {% for p in t.text %}
+      <p>{{p}}</p>
+      {% endfor %}
     </div>
     {% endfor %}
   </div>
