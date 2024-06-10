@@ -281,6 +281,7 @@ def about(request):
         'team_about': team_about,
     }
     request, context = check_feedback_form(request, context)
+    print(f'{context=}')
     return render(request, 'webjew/about.html', context=context)
 
 
@@ -317,21 +318,24 @@ def steps(request):
 
 def jew3d(request):
     context = {
+        'title': "3D Модель",
         'feedback_form': FeedbackForm(),
     }
-    request, context = check_feedback_form(request)
+    request, context = check_feedback_form(request, context)
     return render(request, 'webjew/jew3d.html', context=context)
 
 def policy(request):
     context = {
+        'title': 'Політика конфіденційності',
         'feedback_form': FeedbackForm(),
     }
-    request, context = check_feedback_form(request)
+    request, context = check_feedback_form(request, context)
+    print(f'{context=}')
     return render(request, 'webjew/policy.html', context=context)
 
 def test(request):
     context = {
         'feedback_form': FeedbackForm(),
     }
-    request, context = check_feedback_form(request)
+    request, context = check_feedback_form(request, context)
     return render(request, 'webjew/test.html', context=context)
