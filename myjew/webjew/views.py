@@ -7,6 +7,11 @@ from .serializer import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+# for test email sending
+from django.conf import settings
+from django.core.mail import send_mail
+
+
 cats = {
     "weddingring": WeddingRing, 
     "circletring": CircletRing, 
@@ -334,8 +339,16 @@ def policy(request):
     return render(request, 'webjew/policy.html', context=context)
 
 def test(request):
+    # # email send test 
+    # subject = 'Test subject'
+    # message = 'test text'
+    # email_from = settings.EMAIL_HOST_USER
+    # recip_lst = ['taras.oselia@gmail.com',]
+    # send_mail(subject, message, email_from, recip_lst)
+
     context = {
         'feedback_form': FeedbackForm(),
     }
     request, context = check_feedback_form(request, context)
     return render(request, 'webjew/test.html', context=context)
+    # return HttpResponse('test page')
