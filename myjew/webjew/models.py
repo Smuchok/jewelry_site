@@ -146,6 +146,22 @@ class Feedback(models.Model):
         return f"{self.created} - {self.page_url}: {self.text}"
 
 
+# Консультація
+class Advice(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    created = models.DateTimeField(auto_now_add=True)
+    page_url = models.CharField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Консультація'
+        verbose_name_plural = 'Консультації'
+
+    def __str__(self):
+        return f"{self.created} - {self.name}: {self.phone_number}, {self.email}"
+
+
 # class Question(models.Model):
 #     question_text = models.CharField(max_length=200)
 #     pub_date = models.DateTimeField("date published")

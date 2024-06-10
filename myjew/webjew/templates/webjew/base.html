@@ -162,7 +162,7 @@
   }
 </style>
 
-<!-- модальне вікно підтвердження -->
+<!-- модальне вікно замовлення -->
 <div class="popup" id="popup">
     <div class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
@@ -304,7 +304,7 @@
 	
 		<div class="col-md-6 col-sm-12">
 			<div class="contact-form">
-        <form action="{{ request.path }}" method="post">
+        <form action="{{ request.path }}" method="post" id="feedbackForm">
           <div class="row">
             {% csrf_token %}
             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">

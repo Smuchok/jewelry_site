@@ -46,15 +46,42 @@ def check_feedback_form(request, context={}, feedback_form=FeedbackForm()):
 
     return request, context
 
+
+def check_advice_form(request, context={}, feedback_form=AdviceForm()):
+    print('advice')
+    if request.method == 'POST':
+        print('POST advice')
+        advice_form = AdviceForm(request.POST)
+        if advice_form.is_valid():
+            # form.instance.applicant = request.user
+            print('IS VALID')
+            advice_form.save()
+            context['form_success_advice'] = True
+            # messages.success(request, 'Education Added Successfully')
+            # return redirect('')
+        else:
+            print('IS NOT VALID')
+            # advice_form.save()
+    else:
+        print('NOT POST')
+
+    context['advice_form'] = AdviceForm()
+
+    return request, context
+
+
+
 def index(request):
 
     context = {
         'title': "Головна",
         'active': 1,
         'feedback_form': FeedbackForm(),
+        'advice_from': AdviceForm()
     }
     
     request, context = check_feedback_form(request, context)
+    request, context = check_advice_form(request, context)
     # return HttpResponse(text)
     return render(request, 'webjew/index.html', context=context)
 
@@ -252,7 +279,6 @@ def about(request):
         'active': 3,
         'team': team,
         'team_about': team_about,
-        'feedback_form': FeedbackForm(),
     }
     request, context = check_feedback_form(request, context)
     return render(request, 'webjew/about.html', context=context)
@@ -263,8 +289,10 @@ def contact(request):
         'title': "Контаки",
         'active': 4,
         'feedback_form': FeedbackForm(),
+        'advice_from': AdviceForm(),
     }
     request, context = check_feedback_form(request, context)
+    request, context = check_advice_form(request, context)
     return render(request, 'webjew/contact.html', context=context)
 
 def steps(request):
