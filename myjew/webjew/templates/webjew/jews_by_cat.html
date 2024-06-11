@@ -81,7 +81,12 @@
       {% for j in jews %}
       <div class="col-lg-3 col-md-4 col-sm-6 product-item">
           <img src="/{{j.title_image}}" alt="{{j.title}}" loading="lazy" id="jew-{{j.id}}" onmouseover="openModalImg('jew-{{j.id}}')">
-          <!-- <p>{{j.title_image}}</p> -->
+          {% if j.model3d %}
+          <div class="btn-3d">
+            <a href="{% url 'catalog' %}{{category}}/{{j.id}}"><span class="span-3d">3D</span></a>
+          </div>
+          {% endif %}
+          <!-- <p>{{j.model3d}}</p> -->
         </div>
       {% endfor %}
     {% else %}
@@ -96,6 +101,31 @@
 
 </div>
 
+<!-- 3d button -->
+<style>
+  .btn-3d {
+    justify-self: center;
+  }
+  .btn-3d span {
+    z-index: 1;
+    position: absolute;
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+    top: 7%;
+    right: 8%;
+
+    font-size: 18px;
+    height: 28px;
+    width: 28px;
+    border-radius: 5px;
+  }
+  .span-3d:hover {
+    color: black;
+    opacity: 0.85;
+    background-color: white;
+  }
+</style>
 
 
 <!-- модальне фото -->
@@ -104,7 +134,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 3; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
@@ -181,8 +211,14 @@
 <div id="modal_photo" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="modal-img">
-  <div id="caption"></div>
+  <a href="{% url 'catalog' %}{{category}}/3" id="caption"></a>
 </div>
+
+<style>
+  #caption {
+    font-weight: 100px;
+  }
+</style>
 
 <script>
   // Get the modal
@@ -196,7 +232,7 @@
     img.onclick = function(){
       modal.style.display = "block";
       modalImg.src = this.src;
-      captionText.innerHTML = this.alt;
+      captionText.innerHTML =  'Переглянути для 3D "' + this.alt + '"';
     }
   }
   

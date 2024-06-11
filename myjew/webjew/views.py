@@ -234,6 +234,7 @@ def jews_by_catalog(request, category):
 def jew_details(request, category, jew_id):
     cat = cats[category]
     jew = cat.objects.get(id=jew_id)
+    jew.model3d = str(jew.model3d).replace('webjew/', '')
 
     context = {
         'title': jew.title,
@@ -242,7 +243,8 @@ def jew_details(request, category, jew_id):
         'feedback_form': FeedbackForm(),
     }
 
-    return render(request, 'webjew/jew_details.html', context=context)
+    request, context = check_feedback_form(request, context)
+    return render(request, 'webjew/3d.html', context=context)
 
 def about(request):
     team_about = {

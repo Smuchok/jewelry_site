@@ -15,6 +15,7 @@ class Base(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
     description = models.CharField(default=None, null=True, max_length=300, blank=True)
+    model3d = models.FileField(default=None, null=True, blank=True, upload_to='webjew/static/media/3d')
 
     class Meta:
         abstract = True

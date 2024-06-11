@@ -43,7 +43,8 @@
 <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script> -->
 
 <div class="container model-section">
-  <h2>3D модель виробу "Ніж"</h2>
+  <h2>3D модель виробу "{{jew.title}}"</h2>
+  <!-- <p>{{jew.model3d}}</p> -->
   <div class="model-viewer">
 
     <!-- js for model-viewer -->
@@ -52,7 +53,7 @@
     
     <model-viewer
       id="3d"
-      src="{% static 'media/3d/knife.glb' %}"
+      src="/{{jew.model3d}}"
       auto-rotate 
       camera-controls
       ar ar-scale="auto"
@@ -61,7 +62,7 @@
 
   </div>
   <!-- <p>3D модель</p> -->
-  <a href="{% url 'catalog' %}" class="btn btn-dark btn-catalog">Каталог</a>
+  <a href="{% url 'catalog' %}{{category}}" class="btn btn-dark btn-catalog">Повернутися назад</a>
 </div>
 
 <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
