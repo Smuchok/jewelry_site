@@ -211,7 +211,8 @@
 <div id="modal_photo" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="modal-img">
-  <a href="{% url 'catalog' %}{{category}}/3" id="caption"></a>
+  <!-- <a href="#" id="caption"></a> -->
+  <div id="caption"></div>
 </div>
 
 <style>
@@ -232,7 +233,7 @@
     img.onclick = function(){
       modal.style.display = "block";
       modalImg.src = this.src;
-      captionText.innerHTML =  'Переглянути для 3D "' + this.alt + '"';
+      captionText.innerHTML =  this.alt;
     }
   }
   
